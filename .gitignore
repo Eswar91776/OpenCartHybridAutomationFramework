@@ -23,7 +23,7 @@ reports/
 Thumbs.db
 
 # Local configuration
-config.properties
+# config.properties
 
 # Temporary files
 *.log
