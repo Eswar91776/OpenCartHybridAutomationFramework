@@ -1,7 +1,5 @@
 package listeners;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -79,28 +77,9 @@ public class MyTestListener implements ITestListener {
         // Generate / save the HTML report
         extent.flush();
 
-        // Open the HTML report automatically
-        try {
-
-            File reportFile =
-                    new File("reports/ExtentReport.html");
-
-            if (reportFile.exists()) {
-
-                Desktop.getDesktop().browse(
-                        reportFile.toURI());
-
-            } else {
-
-                System.out.println(
-                        "Extent Report file not found: "
-                        + reportFile.getAbsolutePath());
-            }
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
+        // Do NOT open the HTML report automatically.
+        // Jenkins runs in a headless environment,
+        // so Desktop.getDesktop() can cause HeadlessException.
 
         test.remove();
     }
